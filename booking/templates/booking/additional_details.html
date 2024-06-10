@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<hgroup>
+    <h2>Подтверждение заявки для {{ booking.room.name }}</h2>
+    <h3>Проверьте данные и подтвердите заявку</h3>
+</hgroup>
+<p>Дата: <span id="date">{{ booking.date }}</span></p>
+<p>Время: <span id="start_time">{{ booking.start_time }}</span> - <span id="end_time">{{ booking.end_time }}</span></p>
+<p>Имя: <span id="customer_name">{{ booking.customer_name }}</span></p>
+<p>Email: <span id="customer_email">{{ booking.customer_email }}</span></p>
+<p>Окончательная сумма: <span id="total_amount">{{ price }}</span> руб</p>
+<form class="grid" method="post">
+    {% csrf_token %}
+    {{ form.errors }}
+    <input type="text" id="event_name" name="event_name" placeholder="Название мероприятия" required>
+    <label for="publish1"><input type="checkbox" id="advertise" name="advertise"> Публиковать в афишу</label>
+    <button type="submit">Подтвердить</button>
+</form>
+{% endblock %}

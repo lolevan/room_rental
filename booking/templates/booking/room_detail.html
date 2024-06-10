@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<hgroup>
+    <h2>{{ room.name }}</h2>
+    <h3>Стоимость: {{ room.price_per_hour }} руб/час</h3>
+</hgroup>
+<p>{{ room.description|safe|linebreaks }}</p>
+<figure>
+    {% if room.image %}
+        <img src="{{ room.image.url }}" alt="photo" class="mr-3">
+    {% else %}
+        <img src="https://source.unsplash.com/featured/?event" alt="photo_er" >
+    {% endif %}
+    <figcaption>{{ room.name }}</figcaption>
+</figure>
+<h3>Выбор времени аренды</h3>
+<p>
+    <form method="post" action="{% url 'select_date' room.pk %}">
+        {% csrf_token %}
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date" required>
+        <button type="submit">Next</button>
+    </form>
+    </p>
+{% endblock %}

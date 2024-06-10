@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<hgroup>
+    <h2>Заявка на аренду c {{ room.start_time }}-{{ room.end_time }}</h2>
+    <h3>Заполните данные для аренды</h3>
+</hgroup>
+<h2>Подтвержденные заявки</h2>
+<ul>
+    {% for booking in confirmed_bookings %}
+    <li>{{ booking.start_time }} - {{ booking.end_time }}: {{ booking.customer_name }}</li>
+    {% endfor %}
+</ul>
+<form method="post">
+    {% csrf_token %}
+    {{ form.errors }}
+    <input type="time" id="start_time" name="start_time" placeholder="Начало времени" required>
+    <input type="time" id="end_time" name="end_time" placeholder="Конец времени" required>
+    <input type="text" id="customer_name" name="customer_name" placeholder="Имя" required>
+    <input type="email" id="customer_email" name="customer_email" placeholder="Email" required>
+    <button type="submit">Отправить заявку</button>
+</form>
+{% endblock %}

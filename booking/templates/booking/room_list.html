@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<hgroup>
+    <h2>Витрина комнат</h2>
+    <h3>Выберите подходящую комнату</h3>
+</hgroup>
+<div class="room-list">
+
+    {% for room in rooms %}
+        <article>
+        <hgroup>
+            <h2><a href="{% url 'room_detail' room.pk %}">{{ room.name }}</a></h2>
+            <h3>Стоимость: {{ room.price_per_hour }} руб/час</h3>
+        </hgroup>
+        <p>{{ room.description|safe|linebreaks|truncatewords:50 }}</p>
+        <figure>
+            {% if room.image %}
+                <img src="{{ room.image.url }}" alt="photo" class="mr-3">
+            {% else %}
+                <img src="https://source.unsplash.com/featured/?event" alt="photo_er" >
+            {% endif %}
+            <figcaption><a href="{% url 'room_detail' room.pk %}" target="_blank">Подробнее</a></figcaption>
+        </figure>
+    </article>
+    {% endfor %}
+</div>
+{% endblock %}

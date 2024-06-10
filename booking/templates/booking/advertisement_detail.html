@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<hgroup>
+    <h2>{{ advertisement.title }}</h2>
+    <h3>Стоимость: da руб/час</h3>
+</hgroup>
+<p>{{ advertisement.content|safe|linebreaks }}</p>
+<figure>
+    {% if advertisement.image %}
+        <img src="{{ advertisement.image.url }}" alt="photo" class="mr-3">
+    {% else %}
+        <img src="https://source.unsplash.com/featured/?event" alt="photo_er" >
+    {% endif %}
+    <figcaption>{{ advertisement.title }}</figcaption>
+</figure>
+{% endblock %}
