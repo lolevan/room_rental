@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Аренда комнат</title>
+</head>
+<body>
+    <nav class="container-fluid">
+        <ul>
+            <li><img href="{% url 'index' %}" src="{% static 'images/logo.svg' %}" alt="Logo" width="75px" height="75px"></li>
+        </ul>
+        <ul>
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'room_list' %}">Комнаты</a></li>
+            <li><a href="{% url 'advertisement_list' %}">Афиша</a></li>
+        </ul>
+    </nav>
+    <main class="container">
+        <div class="grid">
+            <section>
+                {% block content %}
+                {% endblock %}
+            </section>
+        </div>
+    </main>
+    <footer class="container">
+        <small><a href="#">Политика конфиденциальности</a> • <a href="#">Контакты</a></small>
+    </footer>
+</body>
+</html>
