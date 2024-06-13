@@ -1,18 +1,61 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-<hgroup>
-    <h2>{{ advertisement.title }}</h2>
-    <h3>Стоимость: da руб/час</h3>
-</hgroup>
-<p>{{ advertisement.content|safe|linebreaks }}</p>
-<figure>
-    {% if advertisement.image %}
-        <img src="{{ advertisement.image.url }}" alt="photo" class="mr-3">
-    {% else %}
-        <img src="https://source.unsplash.com/featured/?event" alt="photo_er" >
-    {% endif %}
-    <figcaption>{{ advertisement.title }}</figcaption>
-</figure>
+<style>
+    body {
+        background-color: #F5F5DC; /* Бежевый цвет фона */
+        color: #6B4E3D; /* Коричневый цвет текста */
+    }
+    h2, h3 {
+        color: #6B4E3D; /* Коричневый цвет заголовков */
+    }
+    p {
+        font-size: 1.1rem; /* Увеличенный размер шрифта для параграфов */
+    }
+    figure {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #FFF8E7; /* Светлый бежевый фон для фигуры */
+        max-width: 600px;
+        margin: 20px auto; /* Центрирование фигуры */
+    }
+    figure img {
+        max-width: 100%;
+        border-radius: 8px;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+    figcaption {
+        font-size: 1rem;
+        color: #6B4E3D; /* Цвет текста для подписи */
+    }
+    .content-container {
+        background-color: #FFF8E7; /* Светлый бежевый фон для контейнера */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 20px auto; /* Центрирование контейнера */
+    }
+    .content-container h2, .content-container h3, .content-container p {
+        color: #6B4E3D; /* Коричневый цвет текста */
+    }
+</style>
+
+<div class="content-container">
+    <hgroup>
+        <h2>{{ advertisement.title }}</h2>
+        <h3>Стоимость: {{ advertisement.price }} руб/час</h3>
+    </hgroup>
+    <p>{{ advertisement.content|safe|linebreaks }}</p>
+    <figure>
+        {% if advertisement.image %}
+            <img src="{{ advertisement.image.url }}" alt="photo" class="mr-3">
+        {% else %}
+            <img src="https://source.unsplash.com/featured/?event" alt="photo_er">
+        {% endif %}
+        <figcaption>{{ advertisement.title }}</figcaption>
+    </figure>
+</div>
 {% endblock %}

@@ -1,21 +1,88 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-<hgroup>
-    <h2>Подтверждение заявки для {{ booking.room.name }}</h2>
-    <h3>Проверьте данные и подтвердите заявку</h3>
-</hgroup>
-<p>Дата: <span id="date">{{ booking.date }}</span></p>
-<p>Время: <span id="start_time">{{ booking.start_time }}</span> - <span id="end_time">{{ booking.end_time }}</span></p>
-<p>Имя: <span id="customer_name">{{ booking.customer_name }}</span></p>
-<p>Email: <span id="customer_email">{{ booking.customer_email }}</span></p>
-<p>Окончательная сумма: <span id="total_amount">{{ price }}</span> руб</p>
-<form class="grid" method="post">
-    {% csrf_token %}
-    {{ form.errors }}
-    <input type="text" id="event_name" name="event_name" placeholder="Название мероприятия" required>
-    <label for="publish1"><input type="checkbox" id="advertise" name="advertise"> Публиковать в афишу</label>
-    <button type="submit">Подтвердить</button>
-</form>
+<style>
+    body {
+        background-color: #F5F5DC; /* Бежевый цвет фона */
+        color: #6B4E3D; /* Коричневый цвет текста */
+    }
+    h2, h3 {
+        color: #6B4E3D; /* Коричневый цвет заголовков */
+    }
+    p {
+        font-size: 1.1rem; /* Увеличенный размер шрифта для параграфов */
+    }
+    span {
+        font-weight: bold; /* Жирный шрифт для значений */
+    }
+    .info-block {
+        background-color: #FFF8E7; /* Светлый бежевый фон для блока информации */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 20px auto; /* Центрирование блока */
+    }
+    .form-block {
+        background-color: #FFF8E7; /* Светлый бежевый фон для блока формы */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 20px auto; /* Центрирование блока */
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    input[type="text"], input[type="checkbox"], button {
+        padding: 10px;
+        border-radius: 4px;
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"] {
+        background-color: #2C2C2C; /* Цвет фона поля */
+        color: #F5F5DC; /* Цвет текста в поле */
+    }
+    button {
+        background-color: #6B4E3D; /* Коричневый цвет кнопки */
+        color: #FFFFFF; /* Белый цвет текста */
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #8B5E3C; /* Более светлый коричневый цвет при наведении */
+    }
+    label {
+        color: #6B4E3D; /* Цвет текста для меток */
+        display: flex;
+        align-items: center;
+    }
+    label input {
+        margin-right: 10px;
+    }
+</style>
+
+<div class="info-block">
+    <hgroup>
+        <h2>Подтверждение заявки для {{ booking.room.name }}</h2>
+        <h3>Проверьте данные и подтвердите заявку</h3>
+    </hgroup>
+    <p>Дата: <span id="date">{{ booking.date }}</span></p>
+    <p>Время: <span id="start_time">{{ booking.start_time }}</span> - <span id="end_time">{{ booking.end_time }}</span></p>
+    <p>Имя: <span id="customer_name">{{ booking.customer_name }}</span></p>
+    <p>Email: <span id="customer_email">{{ booking.customer_email }}</span></p>
+    <p>Окончательная сумма: <span id="total_amount">{{ price }}</span> руб</p>
+</div>
+
+<div class="form-block">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.errors }}
+        <input type="text" id="event_name" name="event_name" placeholder="Название мероприятия" required>
+        <label for="advertise"><input type="checkbox" id="advertise" name="advertise"> Публиковать в афишу</label>
+        <button type="submit">Подтвердить</button>
+    </form>
+</div>
 {% endblock %}

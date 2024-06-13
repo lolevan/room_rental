@@ -11,6 +11,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            color: #e9ab8e; /* Цвет текста */
         }
         main {
             flex: 1; /* Чтобы главный контент занимал оставшееся пространство */
@@ -25,9 +26,16 @@
         }
         .hero h1 {
             font-size: 3rem;
+            color: #ffffff; /* Цвет заголовка */
         }
         .hero p {
             font-size: 1.5rem;
+            color: #ffffff; /* Цвет текста */
+        }
+        .hero a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .hero button {
             background-color: white;
@@ -36,17 +44,24 @@
             padding: 10px 20px;
             font-size: 1rem;
             cursor: pointer;
+            width: 50%;
+            margin: 0 auto;
         }
         .advantages {
-            background-color: rgb(17, 25, 31);
+            background-color: rgb(138, 102, 66);
+            color: #e9ab8e; /* Цвет текста */
         }
         .advantages, .rules {
             padding: 40px 20px;
-            {#background-color: white;#}
-            color: black;
+            color: #e9ab8e; /* Цвет текста */
+        }
+        .advantage li {
+            color: white;
+            list-style-type: disc;
         }
         .advantages h2, .rules h2 {
             text-align: center;
+            color: #e9ab8e; /* Цвет заголовка */
         }
         .advantages .grid, .rules .grid {
             display: flex;
@@ -55,12 +70,13 @@
             justify-content: center;
         }
         .advantage, .rule {
-            background-color: rgb(20,30,38);
+            background-color: rgb(145, 107, 70);
             border-radius: 8px;
             padding: 20px;
             flex: 1 1 calc(33.333% - 40px); /* Три колонки с промежутком */
             box-sizing: border-box;
             max-width: calc(33.333% - 40px);
+            color: #e9ab8e; /* Цвет текста */
         }
         .advantage img, .rule img {
             width: 100%;
@@ -79,50 +95,53 @@
                 max-width: 100%;
             }
         }
+        .grid .rule p {
+            color: white;
+        }
     </style>
 
-     <section class="hero">
-            <h1>Студия Люди</h1>
-            <p>Место творчества и реализации</p>
-         <a href="{% url 'room_list' %}"><button  type="submit">Забронировать</button></a>
-        </section>
-        <section class="advantages">
-            <h2>Наши преимущества</h2>
-            <div class="grid">
-                <div class="advantage">
-                    <ul>
-                        <li>Вместительный гардероб для верхней одежды и личных вещей</li>
-                        <li>Уютная зона ожидания при входе</li>
-                        <li>Детская игровая комната</li>
-                        <li>Быстрый Wi-Fi</li>
-                    </ul>
-                </div>
-                <div class="advantage">
-                    <img src="{% static 'images/da_01.jpg' %}" alt="Преимущество 1">
-                </div>
-                <div class="advantage">
-                    <img src="{% static 'images/da_02.jpg' %}" alt="Преимущество 2">
-                </div>
+    <section class="hero">
+        <h1>Студия Люди</h1>
+        <p>Место творчества и реализации</p>
+        <a href="{% url 'room_list' %}"><button type="submit">Забронировать</button></a>
+    </section>
+    <section class="advantages">
+        <h2>Наши преимущества</h2>
+        <div class="grid">
+            <div class="advantage">
+                <ul>
+                    <li>Вместительный гардероб для верхней одежды и личных вещей</li>
+                    <li>Уютная зона ожидания при входе</li>
+                    <li>Детская игровая комната</li>
+                    <li>Быстрый Wi-Fi</li>
+                </ul>
             </div>
-        </section>
-        <section class="rules">
-            <h2>Правила бронирования</h2>
-            <div class="grid">
-                <div class="rule">
-                    <p>Минимальное время аренды 2 часа</p>
-                </div>
-                <div class="rule">
-                    <p>Доступ в зал возможен за 10 минут до начала времени бронирования</p>
-                </div>
-                <div class="rule">
-                    <p>Отмена бронирования возможна за 3 дня до мероприятия. Вам будет возмещена предоплата или вы можете перенести бронь на другой день</p>
-                </div>
-                <div class="rule">
-                    <p>Бронирование зала и времени происходит после 100% предоплаты</p>
-                </div>
-                <div class="rule">
-                    <p>За порчу имущества гость несет материальную ответственность</p>
-                </div>
+            <div class="advantage">
+                <img src="{% static 'images/da_01.jpg' %}" alt="Преимущество 1">
             </div>
-        </section>
+            <div class="advantage">
+                <img src="{% static 'images/da_02.jpg' %}" alt="Преимущество 2">
+            </div>
+        </div>
+    </section>
+    <section class="rules">
+        <h2>Правила бронирования</h2>
+        <div class="grid">
+            <div class="rule">
+                <p>Минимальное время аренды 2 часа</p>
+            </div>
+            <div class="rule">
+                <p>Доступ в зал возможен за 10 минут до начала времени бронирования</p>
+            </div>
+            <div class="rule">
+                <p>Отмена бронирования возможна за 3 дня до мероприятия. Вам будет возмещена предоплата или вы можете перенести бронь на другой день</p>
+            </div>
+            <div class="rule">
+                <p>Бронирование зала и времени происходит после 100% предоплаты</p>
+            </div>
+            <div class="rule">
+                <p>За порчу имущества гость несет материальную ответственность</p>
+            </div>
+        </div>
+    </section>
 {% endblock %}

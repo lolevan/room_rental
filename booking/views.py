@@ -38,14 +38,6 @@ def advertisement_detail(request, pk):
     return render(request, 'booking/advertisement_detail.html', {'advertisement': advertisement})
 
 
-def select_date(request, pk):
-    room = get_object_or_404(Room, pk=pk)
-    if request.method == 'POST':
-        selected_date = request.POST.get('date')
-        return redirect('book_room', pk=room.pk, date=selected_date)
-    return render(request, 'booking/select_date.html', {'room': room})
-
-
 def book_room(request, pk, date):
     room = get_object_or_404(Room, pk=pk)
     selected_date = datetime.strptime(date, '%Y-%m-%d').date()
@@ -116,7 +108,6 @@ def additional_details(request, pk):
             else:
                 messages.error(request, 'Заявка принята, но письмо не было отправлено')
                 print('Mail not sent')
-                print(request)
 
             return redirect('index')
         else:
@@ -127,16 +118,9 @@ def additional_details(request, pk):
     return render(request, 'booking/additional_details.html', {'form': form, 'price': price, 'booking': booking})
 
 
-def advertise(request, pk):
-    booking = get_object_or_404(Booking, pk=pk)
+def select_date(request, pk):
+    room = get_object_or_404(Room, pk=pk)
     if request.method == 'POST':
-        form = AdvertisementForm(request.POST, request.FILES)
-        if form.is_valid():
-            advertisement = form.save(commit=False)
-            advertisement.booking = booking
-            advertisement.save()
-            return redirect('index')
-    else:
-        form = AdvertisementForm()
-    return render(request, 'booking/advertise.html', {'form': form, 'booking': booking})
-
+        selected_date = request.POST.get('date')
+        return redirect('book_room', pk=room.pk, date=selected_date)
+    return render(request, 'booking/select_date.html', {'room': room})

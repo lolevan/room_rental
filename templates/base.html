@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <title>Аренда комнат</title>
     <style>
@@ -12,21 +13,101 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            background-color: rgb(17, 25, 31); /* Цвет фона */
+            background-image: url("{% static 'images/background.jpg' %}"); /* Цвет фона */
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            color: #6b4e3d; /* Общий цвет текста */
         }
         article {
-            background-color: rgb(20,30,38);
+            background-color: #e9d5c1; /* Фон статьи */
+            color: #6b4e3d; /* Цвет текста статьи */
         }
-         main {
+        main {
             flex: 1; /* Чтобы главный контент занимал оставшееся пространство */
         }
         .icon {
             width: 75px; /* Размер иконки */
             height: 75px;
-            fill: white; /* Цвет иконки */
+            fill: #6b4e3d; /* Цвет иконки */
+        }
+        nav ul li a {
+            color: #6b4e3d; /* Цвет ссылок в навигации */
+        }
+        small {
+            color: #6b4e3d; /* Цвет текста в футере */
+        }
+        small a {
+            color: #6b4e3d; /* Цвет ссылок в футере */
+        }
+        .hero {
+            background-image: url('{% static "images/da_03.jpg" %}'); /* Проверьте путь к вашему изображению */
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
+            color: #6b4e3d; /* Цвет текста в hero */
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            color: #6b4e3d; /* Цвет заголовка */
+        }
+        .hero p {
+            font-size: 1.5rem;
+            color: #6b4e3d; /* Цвет текста */
+        }
+        .hero button {
+            background-color: #e9d5c1;
+            color: #6b4e3d;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 50%;
+            margin: 0 auto;
+        }
+        .advantages {
+            background-color: #f4e3d2;
+            color: #6b4e3d; /* Цвет текста */
+        }
+        .advantages, .rules {
+            padding: 40px 20px;
+        }
+        .advantages h2, .rules h2 {
+            text-align: center;
+            color: #6b4e3d; /* Цвет заголовка */
+        }
+        .advantages .grid, .rules .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .advantage, .rule {
+            background-color: #e9d5c1;
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1 1 calc(33.333% - 40px); /* Три колонки с промежутком */
+            box-sizing: border-box;
+            max-width: calc(33.333% - 40px);
+            color: #6b4e3d; /* Цвет текста */
+        }
+        .advantage img, .rule img {
+            width: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        @media (max-width: 768px) {
+            .advantage, .rule {
+                flex: 1 1 calc(50% - 40px); /* Две колонки на меньших экранах */
+                max-width: calc(50% - 40px);
+            }
+        }
+        @media (max-width: 480px) {
+            .advantage, .rule {
+                flex: 1 1 100%; /* Одна колонка на самых маленьких экранах */
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -37,7 +118,7 @@
                 <a href="{% url 'index' %}">
                     <!-- Вставка содержимого SVG -->
                     <svg class="icon" version="1.0" xmlns="http://www.w3.org/2000/svg" width="75px" height="75px" viewBox="0 0 714.000000 533.000000" preserveAspectRatio="xMidYMid meet">
-                        <g transform="translate(0.000000,533.000000) scale(0.100000,-0.100000)" fill="#FFFFFF" stroke="none">
+                        <g transform="translate(0.000000,533.000000) scale(0.100000,-0.100000)" fill="#6b4e3d" stroke="none">
                             <path d="M3734 5028 c-3 -5 9 -14 27 -20 l32 -11 -7 -86 c-8 -100 -44 -323-54 -333 -4 -3 -20 -8 -36 -10 -16 -2 -31 -8 -33 -14 -3 -9 66 -22 191 -37 34 -4 27 18 -9 32 -40 14 -39 6 -23 123 l12 90 35 -6 c20 -3 42 -6 49 -6 8 0 12 -17 12 -52 0 -68 35 -144 86 -186 70 -58 185 -66 269 -19 101 57 156 201 121 320 -31 106 -112 167 -222 167 -106 0 -192 -57 -234 -155 -17 -40 -19 -41 -59 -37 -23 2 -43 7 -46 11 -5 9 19 164 29 179 4 7 21 12 39 12 20 0 28 3 21 10 -13 13 -194 39 -200 28z m505 -93 c90 -46 122 -171 80 -318 -14 -51 -71 -113-110 -121 -41 -8 -108 10 -137 37 -44 41 -62 90 -62 173 0 101 16 149 66 201 37 39 45 43 88 43 26 0 60 -7 75 -15z"/>
                             <path d="M3319 4983 c-11 -3 -26 -49 -54 -171 -60 -265 -73 -301 -112 -320-46 -22 -41 -35 10 -28 23 3 66 8 95 12 28 4 52 10 52 15 0 8 -25 13 -33 7 -2 -2 -12 3 -21 11 -20 17 -20 18 27 233 18 82 34 148 37 148 3 0 44 -77 90 -171 81 -163 84 -171 66 -184 -10 -8 -24 -16 -30 -18 -6 -2 -8 -7 -5 -10 10 -11 202 17 207 31 2 8 -7 12 -27 12 -41 0 -64 33 -176 252 -51 100 -97 183 -102 184 -4 1 -15 0 -24 -3z"/>
                             <path d="M2480 4707 c-142 -86 -170 -116 -170 -180 0 -79 60 -133 139 -125 38 3 42 2 37 -16 -3 -11 -13 -67 -22 -125 -16 -101 -19 -108 -56 -143 -69 -67-72 -66 -216 70 -175 165 -168 157 -154 194 6 18 9 34 6 37 -2 3 -37 -27 -76-67 -72 -72 -84 -102 -27 -68 49 29 57 12 69 -144 5 -74 10 -164 10 -200 l0 -65 -117 117 c-113 113 -116 118 -104 144 22 49 1 39 -71 -34 -72 -71 -84 -102 -28 -68 27 15 32 15 51 3 42 -30 279 -267 279 -280 0 -7 -7 -22 -15 -34-18 -25 -1 -44 19 -22 7 8 39 42 71 77 61 65 67 86 16 56 -28 -17 -31 -17 -49 -1 -16 15 -20 38 -26 170 -3 83 -8 169 -11 190 -3 24 -1 37 6 37 6 0 61 -49 122 -109 l111 -110 -17 -35 c-26 -55 -3 -44 76 37 40 41 91 86 114 100 60 38 71 59 83 167 14 116 26 157 50 170 16 9 23 3 46 -37 15 -27 33 -58 40 -70 18 -30 18 -53 -3 -75 -9 -10 -14 -21 -11 -24 7 -7 177 88 178 99 0 5 -17 6 -38 2 -39 -6 -39 -6 -79 57 -85 133 -163 273 -163 294 0 12 7 27 15 34 16 13 20 30 8 29 -5 0 -46 -23 -93 -52z m49 -132 c28 -46 51 -86 51 -89 0 -14 -63 -36-101 -36 -33 0 -47 6 -75 34 -48 48 -48 96 2 142 19 19 44 34 54 34 12 0 35 -27 69 -85z"/>

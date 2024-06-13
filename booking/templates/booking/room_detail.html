@@ -44,9 +44,9 @@
 <p>
     <form method="post" action="{% url 'select_date' room.pk %}">
         {% csrf_token %}
-        <label for="date">Select Date:</label>
+        <label for="date">Выберите дату:</label>
         <input type="date" id="date" name="date" required>
-        <button type="submit">Next</button>
+        <button type="submit">Далее</button>
     </form>
 </p>
 
@@ -55,93 +55,95 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <style>
+    body {
+        background-color: #F5F5DC; /* Бежевый цвет фона */
+        color: #6B4E3D; /* Коричневый цвет текста */
+    }
+    h2, h3, p, label {
+        color: #6B4E3D; /* Коричневый цвет текста */
+    }
     .swiper-container {
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-}
-
-.swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.slider-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-}
-
-.swiper-button-next, .swiper-button-prev {
-    color: #007bff;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 27px;
-    height: 44px;
-}
-
-.swiper-button-next {
-    right: 10px;
-}
-
-.swiper-button-prev {
-    left: 10px;
-}
-.swiper-container {
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-}
-
-.swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.slider-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-}
-
-.swiper-button-next, .swiper-button-prev {
-    color: #007bff;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 27px;
-    height: 44px;
-}
-
-.swiper-button-next {
-    right: 10px;
-}
-
-.swiper-button-prev {
-    left: 10px;
-}
-
-.swiper-pagination-bullet {
-    width: 12px;
-    height: 12px;
-    background: #007bff;
-    opacity: 0.5;
-    border-radius: 50%;
-    transition: opacity 0.3s, transform 0.3s;
-    margin: 0 5px; /* добавим отступы между кругами */
-}
-
-.swiper-pagination-bullet-active {
-    opacity: 1;
-    transform: scale(1.2);
-}
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+        position: relative;
+    }
+    .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .slider-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        border-radius: 8px; /* Скругленные углы */
+    }
+    .swiper-button-next, .swiper-button-prev {
+        color: #6B4E3D; /* Коричневый цвет кнопок */
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 27px;
+        height: 44px;
+    }
+    .swiper-button-next {
+        right: 10px;
+    }
+    .swiper-button-prev {
+        left: 10px;
+    }
+    .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+        display: flex;
+        justify-content: center;
+    }
+    .swiper-pagination-bullet {
+        width: 6px !important; /* Размер кругов */
+        height: 6px !important; /* Размер кругов */
+        background: #6B4E3D !important; /* Коричневый цвет буллетов */
+        opacity: 0.5;
+        border-radius: 50% !important;
+        transition: opacity 0.3s, transform 0.3s !important;
+        margin: 0 3px !important; /* Добавим отступы между кругами */
+    }
+    .swiper-pagination-bullet-active {
+        opacity: 1 !important;
+        transform: scale(1.2) !important;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 300px;
+        margin: auto;
+        background-color: #fff; /* Цвет фона блока формы */
+        padding: 20px; /* Внутренние отступы */
+        border-radius: 8px; /* Скругленные углы */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+    }
+    label, button {
+        color: #6B4E3D; /* Коричневый цвет текста */
+    }
+    input[type="date"] {
+        background-color: #2C2C2C; /* Цвет фона поля */
+        color: #F5F5DC; /* Цвет текста в поле */
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    button {
+        background-color: #6B4E3D; /* Коричневый цвет кнопки */
+        color: #FFFFFF; /* Белый цвет текста */
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 8px; /* Скругленные углы */
+    }
+    button:hover {
+        background-color: #8B5E3C; /* Более светлый коричневый цвет при наведении */
+    }
 </style>
 
 <script>

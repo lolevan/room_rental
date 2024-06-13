@@ -1,21 +1,76 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
+<style>
+    body {
+        background-color: #F5F5DC; /* Бежевый цвет фона */
+        color: #6B4E3D; /* Коричневый цвет текста */
+    }
+    h2, h3 {
+        color: #6B4E3D; /* Коричневый цвет заголовков */
+    }
+    .book_room ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .book_room li {
+        background-color: #fff; /* Белый фон для элементов списка */
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 8px; /* Скругленные углы */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 400px;
+        margin: auto;
+        background-color: #fff; /* Белый фон формы */
+        padding: 20px; /* Внутренние отступы */
+        border-radius: 8px; /* Скругленные углы */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+    }
+    input, button {
+        padding: 10px;
+        border-radius: 4px;
+        border: none;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    input[type="time"], input[type="text"], input[type="email"] {
+        background-color: #2C2C2C; /* Цвет фона поля */
+        color: #F5F5DC; /* Цвет текста в поле */
+    }
+    button {
+        background-color: #6B4E3D; /* Коричневый цвет кнопки */
+        color: #FFFFFF; /* Белый цвет текста */
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #8B5E3C; /* Более светлый коричневый цвет при наведении */
+    }
+</style>
+
 <hgroup>
     <h2>Заявка на аренду c {{ room.start_time }}-{{ room.end_time }}</h2>
     <h3>Заполните данные для аренды</h3>
 </hgroup>
+
 <h2>Подтвержденные заявки</h2>
-<ul>
-    {% for booking in confirmed_bookings %}
-    <li>{{ booking.start_time }} - {{ booking.end_time }}: {{ booking.customer_name }}</li>
-    {% endfor %}
-</ul>
+    <div class="book_room">
+        <ul>
+            {% for booking in confirmed_bookings %}
+            <li>{{ booking.start_time }} - {{ booking.end_time }}: {{ booking.customer_name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
 <form method="post">
     {% csrf_token %}
     {{ form.errors }}
+    Начало Записи
     <input type="time" id="start_time" name="start_time" placeholder="Начало времени" required>
+    Конец записи
     <input type="time" id="end_time" name="end_time" placeholder="Конец времени" required>
     <input type="text" id="customer_name" name="customer_name" placeholder="Имя" required>
     <input type="email" id="customer_email" name="customer_email" placeholder="Email" required>
