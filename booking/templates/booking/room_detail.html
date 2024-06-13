@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load custom_filters custom_tags %}
 
 {% block content %}
 <hgroup>
@@ -7,14 +7,39 @@
     <h3>Стоимость: {{ room.price_per_hour }} руб/час</h3>
 </hgroup>
 <p>{{ room.description|safe|linebreaks }}</p>
-<figure>
-    {% if room.image %}
-        <img src="{{ room.image.url }}" alt="photo" class="mr-3">
-    {% else %}
-        <img src="https://source.unsplash.com/featured/?event" alt="photo_er" >
-    {% endif %}
-    <figcaption>{{ room.name }}</figcaption>
-</figure>
+
+<!-- Slider container -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        {% if room.image %}
+        <div class="swiper-slide">
+            <img src="{{ room.image.url }}" alt="photo" class="slider-image">
+        </div>
+        {% endif %}
+
+        {% get_range 11 as range_list %}
+
+        {% for i in range_list %}
+        {% with i|stringformat:"s" as my_string %}
+        {% with "image_"|add:my_string as image_field %}
+        {% with image=room|get_field:image_field %}
+        {% if image %}
+        <div class="swiper-slide">
+            <img src="{{ image.url }}" alt="photo" class="slider-image">
+        </div>
+        {% endif %}
+        {% endwith %}
+        {% endwith %}
+        {% endwith %}
+        {% endfor %}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Add Navigation -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+
 <h3>Выбор времени аренды</h3>
 <p>
     <form method="post" action="{% url 'select_date' room.pk %}">
@@ -23,5 +48,117 @@
         <input type="date" id="date" name="date" required>
         <button type="submit">Next</button>
     </form>
-    </p>
+</p>
+
+<!-- Swiper.js -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<style>
+    .swiper-container {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: #007bff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 27px;
+    height: 44px;
+}
+
+.swiper-button-next {
+    right: 10px;
+}
+
+.swiper-button-prev {
+    left: 10px;
+}
+.swiper-container {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: #007bff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 27px;
+    height: 44px;
+}
+
+.swiper-button-next {
+    right: 10px;
+}
+
+.swiper-button-prev {
+    left: 10px;
+}
+
+.swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: #007bff;
+    opacity: 0.5;
+    border-radius: 50%;
+    transition: opacity 0.3s, transform 0.3s;
+    margin: 0 5px; /* добавим отступы между кругами */
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    transform: scale(1.2);
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            loop: true,
+        });
+    });
+</script>
 {% endblock %}

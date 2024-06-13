@@ -1,13 +1,128 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <hgroup>
-        <h2>Добро пожаловать на сайт аренды комнат</h2>
-        <h3>Идеальное место для вашего мероприятия</h3>
-    </hgroup>
-    <p>Наш проект предлагает удобный сервис для аренды комнат на час. Вы можете выбрать подходящую комнату, забронировать время и разместить информацию о вашем мероприятии в афише.</p>
-    <figure>
-        <img src="https://source.unsplash.com/featured/?office,meeting" alt="Офисная комната">
-        <figcaption>Пример комнаты для аренды</figcaption>
-    </figure>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: rgb(17, 25, 31); /* Цвет фона */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        main {
+            flex: 1; /* Чтобы главный контент занимал оставшееся пространство */
+        }
+        .hero {
+            background-image: url('{% static "images/da_03.jpg" %}'); /* Проверьте путь к вашему изображению */
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
+            color: white;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+        }
+        .hero p {
+            font-size: 1.5rem;
+        }
+        .hero button {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .advantages {
+            background-color: rgb(17, 25, 31);
+        }
+        .advantages, .rules {
+            padding: 40px 20px;
+            {#background-color: white;#}
+            color: black;
+        }
+        .advantages h2, .rules h2 {
+            text-align: center;
+        }
+        .advantages .grid, .rules .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .advantage, .rule {
+            background-color: rgb(20,30,38);
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1 1 calc(33.333% - 40px); /* Три колонки с промежутком */
+            box-sizing: border-box;
+            max-width: calc(33.333% - 40px);
+        }
+        .advantage img, .rule img {
+            width: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        @media (max-width: 768px) {
+            .advantage, .rule {
+                flex: 1 1 calc(50% - 40px); /* Две колонки на меньших экранах */
+                max-width: calc(50% - 40px);
+            }
+        }
+        @media (max-width: 480px) {
+            .advantage, .rule {
+                flex: 1 1 100%; /* Одна колонка на самых маленьких экранах */
+                max-width: 100%;
+            }
+        }
+    </style>
+
+     <section class="hero">
+            <h1>Студия Люди</h1>
+            <p>Место творчества и реализации</p>
+         <a href="{% url 'room_list' %}"><button  type="submit">Забронировать</button></a>
+        </section>
+        <section class="advantages">
+            <h2>Наши преимущества</h2>
+            <div class="grid">
+                <div class="advantage">
+                    <ul>
+                        <li>Вместительный гардероб для верхней одежды и личных вещей</li>
+                        <li>Уютная зона ожидания при входе</li>
+                        <li>Детская игровая комната</li>
+                        <li>Быстрый Wi-Fi</li>
+                    </ul>
+                </div>
+                <div class="advantage">
+                    <img src="{% static 'images/da_01.jpg' %}" alt="Преимущество 1">
+                </div>
+                <div class="advantage">
+                    <img src="{% static 'images/da_02.jpg' %}" alt="Преимущество 2">
+                </div>
+            </div>
+        </section>
+        <section class="rules">
+            <h2>Правила бронирования</h2>
+            <div class="grid">
+                <div class="rule">
+                    <p>Минимальное время аренды 2 часа</p>
+                </div>
+                <div class="rule">
+                    <p>Доступ в зал возможен за 10 минут до начала времени бронирования</p>
+                </div>
+                <div class="rule">
+                    <p>Отмена бронирования возможна за 3 дня до мероприятия. Вам будет возмещена предоплата или вы можете перенести бронь на другой день</p>
+                </div>
+                <div class="rule">
+                    <p>Бронирование зала и времени происходит после 100% предоплаты</p>
+                </div>
+                <div class="rule">
+                    <p>За порчу имущества гость несет материальную ответственность</p>
+                </div>
+            </div>
+        </section>
 {% endblock %}

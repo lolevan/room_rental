@@ -9,6 +9,17 @@ class Room(models.Model):
     capacity = models.IntegerField()
     start_time = models.TimeField()
     end_time = models.TimeField()
+    # Add fields for additional images
+    image_1 = models.ImageField(upload_to='rooms/', blank=True)
+    image_2 = models.ImageField(upload_to='rooms/', blank=True)
+    image_3 = models.ImageField(upload_to='rooms/', blank=True)
+    image_4 = models.ImageField(upload_to='rooms/', blank=True)
+    image_5 = models.ImageField(upload_to='rooms/', blank=True)
+    image_6 = models.ImageField(upload_to='rooms/', blank=True)
+    image_7 = models.ImageField(upload_to='rooms/', blank=True)
+    image_8 = models.ImageField(upload_to='rooms/', blank=True)
+    image_9 = models.ImageField(upload_to='rooms/', blank=True)
+    image_10 = models.ImageField(upload_to='rooms/', blank=True)
 
     def __str__(self):
         return self.name

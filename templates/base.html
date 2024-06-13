@@ -8,6 +8,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <title>Аренда комнат</title>
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: rgb(17, 25, 31); /* Цвет фона */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        article {
+            background-color: rgb(20,30,38);
+        }
+         main {
+            flex: 1; /* Чтобы главный контент занимал оставшееся пространство */
+        }
         .icon {
             width: 75px; /* Размер иконки */
             height: 75px;
