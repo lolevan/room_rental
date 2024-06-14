@@ -67,13 +67,66 @@
 
 <form method="post">
     {% csrf_token %}
-    {{ form.errors }}
-    Начало Записи
-    <input type="time" id="start_time" name="start_time" placeholder="Начало времени" required>
-    Конец записи
-    <input type="time" id="end_time" name="end_time" placeholder="Конец времени" required>
-    <input type="text" id="customer_name" name="customer_name" placeholder="Имя" required>
-    <input type="email" id="customer_email" name="customer_email" placeholder="Email" required>
+    <!-- Ошибки формы -->
+    {% if form.non_field_errors %}
+        <div class="form-errors">
+            {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Начало Записи -->
+    <div class="form-group">
+        <label for="start_time">Начало Записи</label>
+        <input type="time" id="start_time" name="start_time" placeholder="Начало времени" required>
+        {% if form.start_time.errors %}
+            <div class="field-errors">
+                {% for error in form.start_time.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Конец записи -->
+    <div class="form-group">
+        <label for="end_time">Конец записи</label>
+        <input type="time" id="end_time" name="end_time" placeholder="Конец времени" required>
+        {% if form.end_time.errors %}
+            <div class="field-errors">
+                {% for error in form.end_time.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Имя -->
+    <div class="form-group">
+        <label for="customer_name">Имя</label>
+        <input type="text" id="customer_name" name="customer_name" placeholder="Имя" required>
+        {% if form.customer_name.errors %}
+            <div class="field-errors">
+                {% for error in form.customer_name.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+        <label for="customer_email">Email</label>
+        <input type="email" id="customer_email" name="customer_email" placeholder="Email" required>
+        {% if form.customer_email.errors %}
+            <div class="field-errors">
+                {% for error in form.customer_email.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
     <button type="submit">Отправить заявку</button>
 </form>
 {% endblock %}

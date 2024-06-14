@@ -48,7 +48,7 @@
             margin: 0 auto;
         }
         .advantages {
-            background-color: rgb(138, 102, 66);
+            {#background-color: rgb(138, 102, 66);#}
             color: #e9ab8e; /* Цвет текста */
         }
         .advantages, .rules {
@@ -61,7 +61,10 @@
         }
         .advantages h2, .rules h2 {
             text-align: center;
-            color: #e9ab8e; /* Цвет заголовка */
+            color: rgb(145, 107, 70); /* Цвет заголовка */
+        }
+        .advantages .title-bron h2 {
+            color: rgb(145, 107, 70);
         }
         .advantages .grid, .rules .grid {
             display: flex;
@@ -125,8 +128,10 @@
         </div>
     </section>
     <section class="rules">
+        <div class="title-bron">
         <h2>Правила бронирования</h2>
-        <div class="grid">
+        </div>
+            <div class="grid">
             <div class="rule">
                 <p>Минимальное время аренды 2 часа</p>
             </div>

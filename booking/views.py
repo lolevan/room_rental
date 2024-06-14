@@ -56,7 +56,7 @@ def book_room(request, pk, date):
                 booking_duration = datetime.combine(datetime.min, booking.end_time) - datetime.combine(datetime.min,
                                                                                                        booking.start_time)
                 if booking_duration < timedelta(hours=1):
-                    form.add_error(None, 'The booking must be at least one hour long.')
+                    form.add_error(None, 'Бронирование должно длиться не менее одного часа.')
                 else:
                     # Check for overlapping bookings
                     overlapping_bookings = Booking.objects.filter(
@@ -66,12 +66,12 @@ def book_room(request, pk, date):
                         confirmed=True
                     )
                     if overlapping_bookings.exists():
-                        form.add_error(None, 'The booking overlaps with an existing booking.')
+                        form.add_error(None, 'Это бронирование совпадает с существующим бронированием.')
                     else:
                         booking.save()
                         return redirect('additional_details', pk=booking.pk)
             else:
-                form.add_error(None, 'Booking time must be within the working hours of the room.')
+                form.add_error(None, 'Бронирование должно быть произведено в рабочее время отеля.')
     else:
         form = BookingForm(initial={'date': selected_date})
     return render(request, 'booking/book_room.html', {'form': form, 'room': room, 'confirmed_bookings': confirmed_bookings,
